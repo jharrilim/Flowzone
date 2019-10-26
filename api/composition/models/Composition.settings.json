@@ -61,6 +61,9 @@
     "creator": {
       "model": "user",
       "plugin": "users-permissions"
+    },
+    "bpm": {
+      "type": "integer"
     }
   }
 }
