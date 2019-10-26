@@ -1,3 +1,3 @@
-# Strapi application
+# Flowzone
 
-A quick description of your strapi application
+Music, reimagined
