@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/compositions",
+      "handler": "Composition.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/compositions/count",
+      "handler": "Composition.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/compositions/:id",
+      "handler": "Composition.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/compositions",
+      "handler": "Composition.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/compositions/:id",
+      "handler": "Composition.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/compositions/:id",
+      "handler": "Composition.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

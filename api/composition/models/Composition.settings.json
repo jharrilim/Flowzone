@@ -1,0 +1,66 @@
+{
+  "connection": "default",
+  "collectionName": "compositions",
+  "info": {
+    "name": "composition",
+    "description": "Music"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "lyrics": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "created": {
+      "type": "date"
+    },
+    "lastEdited": {
+      "type": "date"
+    },
+    "views": {
+      "type": "biginteger"
+    },
+    "listens": {
+      "type": "biginteger"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "vocals": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "instrumentals": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "audio": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "creator": {
+      "model": "user",
+      "plugin": "users-permissions"
+    }
+  }
+}
