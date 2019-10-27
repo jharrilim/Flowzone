@@ -535,10 +535,12 @@
             "type": "string"
           },
           "views": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "listens": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "cover": {
             "required": [
@@ -789,10 +791,12 @@
             "type": "string"
           },
           "views": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "listens": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "creator": {
             "type": "string"

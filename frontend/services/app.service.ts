@@ -1,4 +1,5 @@
 import Axios, { AxiosInstance } from 'axios';
+import { RegisterResponse } from './response-types';
 
 interface RegisterOpts {
     username: string,
@@ -13,7 +14,25 @@ export class AppService {
     }
     
     async register(registrationData: RegisterOpts) {
-        return await this._axios.post('/auth/local/register', registrationData);
+        try {
+            const resp = await this._axios.post<RegisterResponse>('/auth/local/register', registrationData);
+            console.debug('[Registered]', resp.data);
+            return resp.data;
+        } catch(err) {
+            console.error(err);
+            throw err;
+        }
+    }
+
+    async login(loginData: { identifier: string, password: string }) {
+        try {
+            const resp = await this._axios.post('/auth/local', loginData);
+            console.debug('[Login]', resp.data);
+            return resp.data.jwt;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
     }
 }
 
