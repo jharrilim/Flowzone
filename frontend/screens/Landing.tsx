@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import { StyleSheet, Text, View, Button, Animated } from 'react-native';
+import { StyleSheet, Text, View, Animated } from 'react-native';
 
 import { material } from 'react-native-typography';
+import { Button } from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,9 +36,15 @@ export const Landing = ({ navigation }: AppProps) => {
             <Text style={material.display2}>Music sounds better, with you.</Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Button color="#55C" title="Login" onPress={e => { navigation.navigate('Login') }} />
-            <Button color="#55C" title="Flowzone" onPress={e => { navigation.navigate('Flowzone') }} />
-            <Button color="#55C" title="Register" onPress={e => { navigation.navigate('Register') }} />
+            <View style={{ flex: 1 }}>
+              <Button title="Login" onPress={e => { navigation.navigate('Login') }} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Button title="Enter" onPress={e => { navigation.navigate('Flowzone') }} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Button title="Get Started" onPress={e => { navigation.navigate('Register') }} />
+            </View>
           </View>
         </View>
       </Animated.View>

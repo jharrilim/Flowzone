@@ -33,7 +33,7 @@ export const PlayButton = ({ onPress }: PlayButtonProps) => {
             { rotate: spin }
           ]
         }}>
-          <Icon borderRadius={0} reverse name={isPlaying ? "stop" : "play-arrow"} />
+          <Icon borderRadius={0} reverse name={isPlaying ? "pause" : "play-arrow"} />
         </Animated.View>
       </TouchableOpacity>
     </View>
