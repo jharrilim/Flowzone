@@ -1,31 +1,28 @@
 import React from 'react';
+import { Slider, Text } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
-import { Slider } from 'react-native-elements';
-import PlayButton from './PlayButton';
 
 const styles = StyleSheet.create({
   root: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    paddingRight: 10
+    flexDirection: 'column'
   },
-  icon: {
-
-  },
-  slider: {
-    flex: 1,
-    alignSelf: 'stretch'
+  sliderText: {
+    flexDirection: "row",
+    justifyContent: 'center'
   }
 });
 
-export const MusicSlider = () => {
+interface MusicSliderProps {
+  artist?: string,
+  title?: string
+}
+
+export const MusicSlider = ({ artist, title }: MusicSliderProps) => {
   return (
     <View style={styles.root}>
-      <View style={styles.icon}>
-        <PlayButton />
-      </View>
-      <View style={styles.slider}>
-        <Slider thumbTintColor={'#77E'} />
+      <Slider thumbTintColor={'#77E'} maximumTrackTintColor="#5CA" />
+      <View style={styles.sliderText}>
+        {title && artist && <Text>{artist} - {title}</Text>}
       </View>
     </View>
   );

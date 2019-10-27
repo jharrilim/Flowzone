@@ -14,6 +14,7 @@ import { ServiceContainer, serviceContainerContextDefaultValue } from './service
 import MusicSlider from './components/MusicSlider';
 import AppHeader from './components/AppHeader';
 import { StatusBar } from 'react-native';
+import AppFooter from './components/AppFooter';
 
 const AppNavigator = createStackNavigator({
   Start: {
@@ -89,7 +90,7 @@ export default () => (
     <AppContext.Provider value={appContextDefaultValue}>
       {/* <StatusBar backgroundColor="#FFF" barStyle="light-content" /> */}
       <AppNavigatorContainer />
-      <MusicSlider />
+      <AppFooter />
     </AppContext.Provider>
   </ServiceContainer.Provider>
 );
