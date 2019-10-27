@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/compositions/hot",
+      "handler": "Composition.hot",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/compositions/count",
       "handler": "Composition.count",
       "config": {

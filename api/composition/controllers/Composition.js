@@ -5,4 +5,8 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+    hot: async (ctx) => {
+        return strapi.services.composition.hot();
+    }
+};

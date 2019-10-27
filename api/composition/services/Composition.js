@@ -5,4 +5,10 @@
  * to customize this service
  */
 
-module.exports = {};
+module.exports = {
+    hot: (params) => {
+        return Composition.find()
+        .orderBy('Views', 'desc')
+        .limit(10);
+    }
+};

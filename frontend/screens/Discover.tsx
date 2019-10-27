@@ -22,7 +22,6 @@ export const Discover = ({ navigation }: DiscoverProps) => {
       <Text style={material.title}>Discover new songs</Text>
       <View>
         <Carousel
-          ref={c => this._slider1Ref = c}
           data={mockData}
           sliderWidth={400}
           itemWidth={400}
