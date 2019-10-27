@@ -5,14 +5,11 @@ import { NavigationStackProp } from 'react-navigation-stack';
 import Carousel from 'react-native-snap-carousel';
 import { Tile } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { mockData } from './mock/mock-data';
 
 interface DiscoverProps {
   navigation: NavigationStackProp<any, any>
 }
-const mockData = [
-  { title: 'Some Song', artist: 'Some name' },
-  { title: 'Another Song', artist: 'Best Artist' }
-];
 
 export const Discover = ({ navigation }: DiscoverProps) => {
   const [carouselIndex, setCarouselIndex] = useState(0);
