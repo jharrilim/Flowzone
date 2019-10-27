@@ -15,12 +15,6 @@ export const Register = () => {
         onSubmit={({ username, email, password }) => {
           return appService.register({ username, email, password });
         }}
-        // validate={({ username, email, password, confirmPassword }) => {
-        //   const errors: { [prop: string]: string } = { };
-        //   if(password !== confirmPassword) {
-        //     errors.confirmPassword = '';
-        //   }
-        // }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Invalid Email').required(),
           username: Yup.string().min(1).required(),
@@ -31,64 +25,62 @@ export const Register = () => {
             })
         })}
       >
-        {({ values, handleBlur, handleChange, handleSubmit, isSubmitting }) => {
-          return (
-            <View style={{ paddingLeft: 10, paddingRight: 10 }}>
-              <View>
-                <Text style={material.title}>Email</Text>
-                <Input
-                  autoCompleteType="email"
-                  textContentType="emailAddress"
-                  keyboardType="email-address"
-                  value={values.email}
-                  onChangeText={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                />
-                <Text style={{ color: 'red' }}><ErrorMessage name="email" /></Text>
-              </View>
-              <View>
-                <Text style={material.title}>Username</Text>
-                <Input
-                  autoCompleteType="username"
-                  textContentType="username"
-                  value={values.username}
-                  onChangeText={handleChange('username')}
-                  onBlur={handleBlur('username')}
-                />
-                <Text style={{ color: 'red' }}><ErrorMessage name="username" /></Text>
-              </View>
-              <View>
-                <Text style={material.title}>Password</Text>
-                <Input
-                  autoCompleteType="password"
-                  secureTextEntry
-                  textContentType="password"
-                  value={values.password}
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                />
-                <Text style={{ color: 'red' }}><ErrorMessage name="password" /></Text>
-
-                <Text style={material.title}>Confirm Password</Text>
-                <Input
-                  autoCompleteType="password"
-                  secureTextEntry
-                  textContentType="password"
-                  value={values.confirmPassword}
-                  onChangeText={handleChange('confirmPassword')}
-                  onBlur={handleBlur('confirmPassword')}
-                />
-                <Text style={{ color: 'red' }}><ErrorMessage name="confirmPassword" /></Text>
-              </View>
-              <View>
-                {isSubmitting
-                  ? <ActivityIndicator />
-                  : <Button onPress={() => handleSubmit()} title="Register" />
-                }
-              </View>
+        {({ values, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
+          <View style={{ paddingLeft: 10, paddingRight: 10 }}>
+            <View>
+              <Text style={material.title}>Email</Text>
+              <Input
+                autoCompleteType="email"
+                textContentType="emailAddress"
+                keyboardType="email-address"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+              />
+              <Text style={{ color: 'red' }}><ErrorMessage name="email" /></Text>
             </View>
-          );
-        }}
+            <View>
+              <Text style={material.title}>Username</Text>
+              <Input
+                autoCompleteType="username"
+                textContentType="username"
+                value={values.username}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+              />
+              <Text style={{ color: 'red' }}><ErrorMessage name="username" /></Text>
+            </View>
+            <View>
+              <Text style={material.title}>Password</Text>
+              <Input
+                autoCompleteType="password"
+                secureTextEntry
+                textContentType="password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+              />
+              <Text style={{ color: 'red' }}><ErrorMessage name="password" /></Text>
+
+              <Text style={material.title}>Confirm Password</Text>
+              <Input
+                autoCompleteType="password"
+                secureTextEntry
+                textContentType="password"
+                value={values.confirmPassword}
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+              />
+              <Text style={{ color: 'red' }}><ErrorMessage name="confirmPassword" /></Text>
+            </View>
+            <View>
+              {isSubmitting
+                ? <ActivityIndicator />
+                : <Button onPress={() => handleSubmit()} title="Register" />
+              }
+            </View>
+          </View>
+        )}
       </Formik>
     </>
   )
