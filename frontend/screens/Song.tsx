@@ -1,8 +1,15 @@
 import React from 'react';
-import { Image, View, Text, Button, FlatList } from 'react-native';
+import { Image, View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { material } from 'react-native-typography';
 import { AntDesign } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+  root: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+});
 
 interface SongProps {
   navigation: NavigationStackProp<any, any>
@@ -16,7 +23,7 @@ export const Song = ({ navigation }: SongProps) => {
   ];
 
   return (
-    <View>
+    <View style={styles.root}>
       <View style={{ alignItems: 'center', flexDirection: 'row', alignContent: 'center', justifyContent: 'center' }}>
         <View style={{ alignItems: 'center' }}>
           <Text>Artist</Text>
