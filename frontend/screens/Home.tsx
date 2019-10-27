@@ -1,21 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { Formik } from 'formik';
-import Axios from 'axios';
+import { View } from 'react-native';
+import { Text } from 'react-native-elements';
 
 export const Home = () => {
   return (
-    <>
-      <Formik initialValues={{ name: '' }} onSubmit={() => { }}>
-        {props => {
-          return (
-            <>
-              <Text>{props.values.name}</Text>
-            </>
-          );
-        }}
-      </Formik>
-    </>
+    <View>
+      <Text>Home</Text>
+    </View>
   )
 };
 
