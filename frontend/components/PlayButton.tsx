@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 
 interface PlayButtonProps {
-  onPress?: (isPlaying: boolean) => void
+  onPress?: (isPlaying: boolean) => void,
 }
 
 export const PlayButton = ({ onPress }: PlayButtonProps) => {
@@ -24,7 +24,7 @@ export const PlayButton = ({ onPress }: PlayButtonProps) => {
   const spin = playingToggleAnim.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg']
-  })
+  });
   return (
     <View>
       <TouchableOpacity onPress={() => playButtonClicked()}>
@@ -37,7 +37,7 @@ export const PlayButton = ({ onPress }: PlayButtonProps) => {
         </Animated.View>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 export default PlayButton;

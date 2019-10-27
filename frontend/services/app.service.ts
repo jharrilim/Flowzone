@@ -34,5 +34,9 @@ export class AppService {
             throw err;
         }
     }
+
+    async getComposition() {
+        
+    }
 }
 

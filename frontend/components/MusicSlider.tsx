@@ -36,7 +36,7 @@ export const MusicSlider = ({ artist, title, length, currentTime, onSlidingCompl
         minimumValue={0}
         maximumValue={length}
         onSlidingComplete={onSlidingComplete}
-        />
+      />
       <View style={styles.times}>
         <SongTime length={currentTime} />
         {title && artist && <Text>{artist} - {title}</Text>}

@@ -36,7 +36,6 @@ export const AppFooter = () => {
       if (playbackStatus.isPlaying) { // Playing
         setCurrentPosition(playbackStatus.positionMillis);
       } else { // Paused
-
       }
 
       if (playbackStatus.isBuffering) {
