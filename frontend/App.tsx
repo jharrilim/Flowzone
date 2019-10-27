@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from './screens/Home';
@@ -8,6 +8,9 @@ import Flowzone from './screens/Flowzone';
 import Discover from './screens/Discover';
 import Landing from './screens/Landing';
 import Song from './screens/Song';
+import Artist from './screens/Artist';
+import { AppContext, appContextDefaultValue } from './App.context';
+import { ServiceContainer, serviceContainerContextDefaultValue } from './services/service-container.context';
 
 const AppNavigator = createStackNavigator({
   Start: {
@@ -17,7 +20,10 @@ const AppNavigator = createStackNavigator({
     })
   },
   Home: {
-    screen: Home
+    screen: Home,
+    navigationOptions: ({ }) => ({
+      title: 'Home'
+    })
   },
   Login: {
     screen: Login,
@@ -48,6 +54,12 @@ const AppNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: navigation.getParam('title', 'Song')
     })
+  },
+  Artist: {
+    screen: Artist,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.getParam('artist', 'Artist')
+    })
   }
 },
   {
@@ -63,4 +75,13 @@ const AppNavigator = createStackNavigator({
   }
 );
 
-export default createAppContainer(AppNavigator);
+const AppNavigatorContainer = createAppContainer(AppNavigator);
+
+
+export default () => (
+  <ServiceContainer.Provider value={serviceContainerContextDefaultValue}>
+    <AppContext.Provider value={appContextDefaultValue}>
+      <AppNavigatorContainer />
+    </AppContext.Provider>
+  </ServiceContainer.Provider>
+);

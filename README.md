@@ -1,3 +1,3 @@
 # Flowzone
 
-Music, reimagined
+Music, re-imagined
