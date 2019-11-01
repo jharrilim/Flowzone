@@ -5,6 +5,8 @@ export interface RegisterResponse {
     user: User;
 }
 
+export type LoginResponse = RegisterResponse;
+
 export interface User {
     id:                  number;
     username:            string;

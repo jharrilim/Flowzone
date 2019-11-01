@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Flowzone",
-    "slug": "frontend",
+    "slug": "flowzone",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -29,6 +29,9 @@
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.github.jharrilim"
     }
   }
 }

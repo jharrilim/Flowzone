@@ -1,5 +1,6 @@
 import Axios, { AxiosInstance } from 'axios';
-import { RegisterResponse } from './response-types';
+import { RegisterResponse, LoginResponse } from './response-types';
+import { AsyncStorage } from 'react-native';
 
 interface RegisterOpts {
     username: string,
@@ -16,6 +17,7 @@ export class AppService {
     async register(registrationData: RegisterOpts) {
         try {
             const resp = await this._axios.post<RegisterResponse>('/auth/local/register', registrationData);
+            await AsyncStorage.setItem('user', JSON.stringify(resp.data.user));
             console.debug('[Registered]', resp.data);
             return resp.data;
         } catch(err) {
@@ -26,7 +28,8 @@ export class AppService {
 
     async login(loginData: { identifier: string, password: string }) {
         try {
-            const resp = await this._axios.post('/auth/local', loginData);
+            const resp = await this._axios.post<LoginResponse>('/auth/local', loginData);
+            await AsyncStorage.setItem('user', JSON.stringify(resp.data.user));
             console.debug('[Login]', resp.data);
             return resp.data.jwt;
         } catch (err) {
