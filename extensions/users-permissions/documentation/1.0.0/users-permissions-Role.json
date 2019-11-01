@@ -605,6 +605,9 @@
                 },
                 "compositionsCreated": {
                   "type": "string"
+                },
+                "avatar": {
+                  "type": "string"
                 }
               }
             }

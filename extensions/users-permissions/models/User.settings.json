@@ -58,6 +58,11 @@
     },
     "compositionsCreated": {
       "collection": "composition"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "10/26/2019 11:26:42 PM"
+    "x-generation-date": "10/31/2019 8:30:51 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2893,6 +2893,9 @@
               }
             }
           },
+          "bpm": {
+            "type": "integer"
+          },
           "creator": {
             "required": [
               "id",
@@ -2929,11 +2932,11 @@
               },
               "compositionsCreated": {
                 "type": "string"
+              },
+              "avatar": {
+                "type": "string"
               }
             }
-          },
-          "bpm": {
-            "type": "integer"
           }
         }
       },
@@ -2965,11 +2968,11 @@
             "type": "integer",
             "default": "0"
           },
-          "creator": {
-            "type": "string"
-          },
           "bpm": {
             "type": "integer"
+          },
+          "creator": {
+            "type": "string"
           }
         }
       },
@@ -3064,6 +3067,9 @@
                   "type": "string"
                 },
                 "compositionsCreated": {
+                  "type": "string"
+                },
+                "avatar": {
                   "type": "string"
                 }
               }
@@ -3205,11 +3211,57 @@
               "audio": {
                 "type": "string"
               },
-              "creator": {
-                "type": "string"
-              },
               "bpm": {
                 "type": "integer"
+              },
+              "creator": {
+                "type": "string"
+              }
+            }
+          },
+          "avatar": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
               }
             }
           }

@@ -783,6 +783,9 @@
               }
             }
           },
+          "bpm": {
+            "type": "integer"
+          },
           "creator": {
             "required": [
               "id",
@@ -819,11 +822,11 @@
               },
               "compositionsCreated": {
                 "type": "string"
+              },
+              "avatar": {
+                "type": "string"
               }
             }
-          },
-          "bpm": {
-            "type": "integer"
           }
         }
       },
@@ -855,11 +858,11 @@
             "type": "integer",
             "default": "0"
           },
-          "creator": {
-            "type": "string"
-          },
           "bpm": {
             "type": "integer"
+          },
+          "creator": {
+            "type": "string"
           }
         }
       }
