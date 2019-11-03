@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Text, Input, Button } from 'react-native-elements';
 import { View, AsyncStorage } from 'react-native';
 import { material } from 'react-native-typography';
-import { ServiceContainer } from '../services/service-container.context';
+import { ServiceContainer } from '../../services/service-container.context';
 import { NavigationStackProp } from 'react-navigation-stack';
 
 interface LoginProps {
@@ -11,12 +11,12 @@ interface LoginProps {
 }
 
 export const Login = ({ navigation }: LoginProps) => {
-  const { appService } = useContext(ServiceContainer);
+  const { userService } = useContext(ServiceContainer);
  
   return (
     <Formik initialValues={{ identifier: '', password: '' }} 
       onSubmit={async (loginData, { resetForm }) => {
-        const jwt = await appService.login(loginData);
+        const jwt = await userService.login(loginData);
         await AsyncStorage.setItem('jwt', jwt);
         navigation.popToTop({ immediate: false });
         navigation.navigate('Discover');

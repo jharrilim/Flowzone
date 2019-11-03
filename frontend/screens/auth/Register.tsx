@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { View, Button, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { Formik, ErrorMessage } from 'formik';
-import { ServiceContainer } from '../services/service-container.context';
+import { ServiceContainer } from '../../services/service-container.context';
 import * as Yup from 'yup';
 import { material } from 'react-native-typography';
-import { Input, Text } from 'react-native-elements';
+import { Input, Text, Button } from 'react-native-elements';
 import { AsyncStorage } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -14,13 +14,13 @@ interface RegisterProps {
 }
 
 export const Register = ({ navigation }: RegisterProps) => {
-  const { appService } = useContext(ServiceContainer);
+  const { userService } = useContext(ServiceContainer);
   return (
     <ScrollView>
       <Formik
         initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
         onSubmit={async ({ username, email, password }) => {
-          const { jwt, user } = await appService.register({ username, email, password });
+          const { jwt, user } = await userService.register({ username, email, password });
           await AsyncStorage.multiSet([['jwt', jwt], ['user', JSON.stringify(user)]])
           navigation.navigate('Discover');
         }}
@@ -86,10 +86,7 @@ export const Register = ({ navigation }: RegisterProps) => {
               </View>
             </View>
             <View>
-              {isSubmitting
-                ? <ActivityIndicator />
-                : <Button onPress={() => handleSubmit()} title="Register" />
-              }
+              <Button loading={isSubmitting} onPress={() => handleSubmit()} title="Register" />
             </View>
           </View>
         )}

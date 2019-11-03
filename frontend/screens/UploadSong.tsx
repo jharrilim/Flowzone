@@ -14,6 +14,11 @@ const win = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   root: {
+    flex: 1,
+    flexDirection: 'column',
+    alignContent: 'space-between',
+  },
+  scrollRoot: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
@@ -46,103 +51,110 @@ export const UploadSong = ({ navigation }: UploadSongProps) => {
   const [coverImageUri, setCoverImageUri] = useState('');
   const [song, setSong] = useState<DocumentPicker.DocumentResult>({ type: 'cancel' });
   return (
-    <ScrollView style={styles.root}>
-      <Formik
-        initialValues={{
-          title: '',
-          lyrics: '',
-          description: '',
-          bpm: 80,
-        }}
-        onSubmit={() => {
+    <Formik
+      initialValues={{
+        title: '',
+        lyrics: '',
+        description: '',
+        bpm: 80,
+      }}
+      onSubmit={() => {
 
-        }}
-        validationSchema={Yup.object().shape({
-          title: Yup.string().required(),
-          lyrics: Yup.string().notRequired(),
-          description: Yup.string().notRequired(),
-          bpm: Yup.number().max(1000).integer().required(),
-        })}
-      >{({ values, handleChange, handleBlur }) => (
-        <View style={styles.form}>
-          <View style={{ alignItems: 'center' }}>
-            <Input
-              inputStyle={styles.titleInput}
-              inputContainerStyle={{ borderBottomWidth: 0 }}
-              value={values.title}
-              onChangeText={handleChange('title')}
-              onBlur={handleBlur('title')}
-              placeholder="Song Title"
-            />
-          </View>
-          <View style={styles.cover}>
-            <TouchableOpacity onPress={async () => {
-              const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-              if (permissionResult.status !== Permissions.PermissionStatus.GRANTED)
-                return Alert.alert('Insufficient Permissions', 'Cannot upload cover photo without gallery permissions.');
-
-              const imageResult = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: false });
-              if (imageResult.cancelled === true)
-                return;
-
-              setCoverImageUri(imageResult.uri);
-            }}>
-              <Image
-                style={styles.coverImage}
-                resizeMode={'contain'}
-                source={coverImageUri.length > 0 ? { uri: coverImageUri } : require('../assets/icon.png')}
-                defaultSource={require('../assets/icon.png')}
+      }}
+      validationSchema={Yup.object().shape({
+        title: Yup.string().required(),
+        lyrics: Yup.string().notRequired(),
+        description: Yup.string().notRequired(),
+        bpm: Yup.number().max(1000).integer().required(),
+      })}
+    >{({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+      <View style={styles.root}>
+        <ScrollView style={styles.scrollRoot}>
+          <View style={styles.form}>
+            <View style={{ alignItems: 'center' }}>
+              <Input
+                inputStyle={styles.titleInput}
+                inputContainerStyle={{ borderBottomWidth: 0 }}
+                value={values.title || song.name}
+                onChangeText={handleChange('title')}
+                onBlur={handleBlur('title')}
+                placeholder="Song Title"
               />
-            </TouchableOpacity>
-            <Text style={material.caption}>Upload a Cover Photo</Text>
-          </View>
-          <View>
-            <View style={{ flexDirection: 'row', alignContent: 'space-between' }}>
-              <View style={{ flex: 6 }}>
-                <Text>{song.name || (song.file && song.file.name) || 'Upload Song'}</Text>
-                <TouchableOpacity
-                  onPress={async () => {
-                    const documentResult = await DocumentPicker.getDocumentAsync({
-                      multiple: false,
-                      type: 'audio/*'
-                    });
-                    if(documentResult.type === 'cancel')
-                      return;
+            </View>
+            <View style={styles.cover}>
+              <View style={{ flexGrow: 0, flexShrink: 1 }}>
+                <TouchableOpacity onPress={async () => {
+                  const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+                  if (permissionResult.status !== Permissions.PermissionStatus.GRANTED)
+                    return Alert.alert('Insufficient Permissions', 'Cannot upload cover photo without gallery permissions.');
 
-                    setSong(documentResult);
-                  }}
-                >
-                  <Icon name="cloud-upload" reverse />
+                  const imageResult = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: false });
+                  if (imageResult.cancelled === true)
+                    return;
+
+                  setCoverImageUri(imageResult.uri);
+                }}>
+                  <Image
+                    style={styles.coverImage}
+                    resizeMode={'contain'}
+                    source={coverImageUri.length > 0 ? { uri: coverImageUri } : require('../assets/icon.png')}
+                    defaultSource={require('../assets/icon.png')}
+                  />
                 </TouchableOpacity>
               </View>
-              <View style={{ flex: 4 }}>
+              <Text style={material.caption}>Upload a Cover Photo</Text>
+            </View>
+            <View>
+              <View style={{ flexDirection: 'row', alignContent: 'space-between' }}>
+                <View style={{ flex: 6 }}>
+                  <Text>{song.name || (song.file && song.file.name) || 'Upload Song'}</Text>
+                  <TouchableOpacity
+                    onPress={async () => {
+                      const documentResult = await DocumentPicker.getDocumentAsync({
+                        multiple: false,
+                        type: 'audio/*'
+                      });
+                      if (documentResult.type === 'cancel')
+                        return;
+
+                      setSong(documentResult);
+                    }}
+                  >
+                    <Icon name="cloud-upload" reverse />
+                  </TouchableOpacity>
+                </View>
+                <View style={{ flex: 4 }}>
+                  <Input
+                    label={'Beats Per Minute'}
+                    style={{ flex: 1 }}
+                    value={values.bpm.toString()}
+                    onChangeText={handleChange('bpm')}
+                    onBlur={handleBlur('bpm')}
+                    placeholder={'BPM'}
+                    keyboardType={'number-pad'}
+                    leftIcon={<Icon name="music-note" />}
+                  />
+                </View>
+              </View>
+              <View>
                 <Input
-                  label={'Beats Per Minute'}
-                  style={{ flex: 1 }}
-                  value={values.bpm.toString()}
-                  onChangeText={handleChange('bpm')}
-                  onBlur={handleBlur('bpm')}
-                  placeholder={'BPM'}
-                  keyboardType={'number-pad'}
-                  leftIcon={<Icon name="music-note" />}
+                  label={"Description"}
+                  value={values.description}
+                  onChangeText={handleChange('description')}
+                  onBlur={handleBlur('description')}
+                  placeholder={'Describe your composition...'}
+                  multiline
+                  numberOfLines={6}
                 />
               </View>
             </View>
-            <View>
-              <Input
-                label={"Description"}
-                value={values.description}
-                onChangeText={handleChange('description')}
-                onBlur={handleBlur('description')}
-                placeholder={'Describe your composition...'}
-                multiline
-                numberOfLines={6}
-              />
-            </View>
           </View>
+        </ScrollView>
+        <View>
+          <Button loading={isSubmitting} title={'Submit'} onPress={() => handleSubmit()} />
         </View>
-      )}</Formik>
-    </ScrollView>
+      </View>
+    )}</Formik>
   );
 };
 

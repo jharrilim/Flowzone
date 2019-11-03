@@ -53,7 +53,7 @@ export const Landing = ({ navigation }: AppProps) => {
                 <Button title="Login" onPress={e => { navigation.navigate('Login') }} />
               </View>
               <View style={{ flex: 1 }}>
-                <Button title="Enter" onPress={e => { navigation.navigate('Flowzone', { title: 'Flowzone' }) }} />
+                <Button title="Enter" onPress={e => { navigation.navigate('App', { title: 'Flowzone' }) }} />
               </View>
               <View style={{ flex: 1 }}>
                 <Button title="Get Started" onPress={e => { navigation.navigate('Register') }} />
