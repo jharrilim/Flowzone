@@ -14,6 +14,7 @@ import Artist from './screens/Artist';
 import Profile from './screens/Profile';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
+import UploadSong from './screens/UploadSong';
 
 const AppNavigator = createStackNavigator({
   Start: {
@@ -72,7 +73,14 @@ const AppNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Your Profile',
     }),
-  }
+  },
+  UploadSong: {
+    screen: UploadSong,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Upload a Song',
+      
+    })
+  },
 },
   {
     defaultNavigationOptions: {
@@ -95,7 +103,9 @@ export default () => (
     <AppContext.Provider value={appContextDefaultValue}>
       {/* <StatusBar backgroundColor="#FFF" barStyle="light-content" /> */}
       <AppNavigatorContainer />
-      <AppFooter />
+      <AppContext.Consumer>
+        {({ showFooter }) => showFooter && <AppFooter /> }
+      </AppContext.Consumer>
     </AppContext.Provider>
   </ServiceContainer.Provider>
 );

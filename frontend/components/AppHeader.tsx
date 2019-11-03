@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const AnimatedAvatar = Animated.createAnimatedComponent(Avatar);
 
 interface AppHeaderProps {
-  navigation: NavigationStackProp<any, any>,
+  navigation: NavigationStackProp,
 }
 
 export const AppHeader = ({ navigation }: AppHeaderProps) => {
@@ -31,7 +31,7 @@ export const AppHeader = ({ navigation }: AppHeaderProps) => {
         />
       </TouchableOpacity>
       <View style={{ alignItems: 'center' }}>
-        <Text>Hello</Text>
+        <Text>{navigation.state.routeName}</Text>
       </View>
       <TouchableOpacity
         onPress={() => {

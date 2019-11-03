@@ -38,6 +38,10 @@ export class AppService {
         }
     }
 
+    async logout() {
+        await AsyncStorage.removeItem('user');
+    }
+
     async getComposition() {
         
     }

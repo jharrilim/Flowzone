@@ -35,6 +35,7 @@ export const Register = ({ navigation }: RegisterProps) => {
       >
         {({ values, handleBlur, handleChange, handleSubmit, isSubmitting }) => (
           <View style={{ paddingLeft: 10, paddingRight: 10, flex: 1, justifyContent: 'space-between' }}>
+            <Text style={material.headline}>Your music journey starts here.</Text>
             <View>
               <View>
                 <Text style={material.title}>Email</Text>

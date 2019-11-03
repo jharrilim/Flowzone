@@ -30,7 +30,7 @@ export const Song = ({ navigation }: SongProps) => {
 
   return (
     <View style={styles.root}>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View style={{ alignItems: 'center', flexDirection: 'row', alignContent: 'center', justifyContent: 'center' }}>
           <View style={{ alignItems: 'center' }}>
             <Text>Artist</Text>
