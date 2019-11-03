@@ -16,6 +16,7 @@ import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 import UploadSong from './screens/UploadSong';
 import { Button } from 'react-native-elements';
+import { SafeAreaView } from 'react-native';
 
 const AppNavigator = createStackNavigator({
   Start: {
@@ -106,7 +107,9 @@ export default () => {
     <ServiceContainer.Provider value={serviceContainerContextDefaultValue}>
       <AppContext.Provider value={appContextDefaultValue}>
         {/* <StatusBar backgroundColor="#FFF" barStyle="light-content" /> */}
-        <AppNavigatorContainer screenProps={{ setShowFooter }} />
+        <SafeAreaView style={{ flex: 1 }}>
+          <AppNavigatorContainer screenProps={{ setShowFooter }} />
+        </SafeAreaView>
         {showFooter && <AppFooter />}
       </AppContext.Provider>
     </ServiceContainer.Provider>
