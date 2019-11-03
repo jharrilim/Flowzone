@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
-import { View, StyleSheet, Dimensions, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Dimensions, Image, Alert } from 'react-native';
 import { Button, Text, Input, } from 'react-native-elements';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { material } from 'react-native-typography';
 import { NavigationStackProp } from 'react-navigation-stack';
-import { AppContext } from '../App.context';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 const win = Dimensions.get('window');
 
@@ -28,19 +30,19 @@ const styles = StyleSheet.create({
   coverImage: {
     // width: win.width * 0.8,
     // height: win.height,
+  },
+  uploadCoverPhotoButton: {
   }
 });
 
 interface UploadSongProps {
   navigation: NavigationStackProp,
-
 }
 
 export const UploadSong = ({ navigation }: UploadSongProps) => {
-  const appContext = useContext(AppContext);
-  appContext.showFooter = navigation.getParam('showFooter', false);
+  const [coverImageUri, setCoverImageUri] = useState('');
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <View style={{ alignItems: 'center' }}>
         <Text style={material.headline}>Upload Your Composition</Text>
       </View>
@@ -63,13 +65,24 @@ export const UploadSong = ({ navigation }: UploadSongProps) => {
       >{({ values, handleChange, handleBlur }) => (
         <View style={styles.form}>
           <View style={styles.cover}>
-            <Image
-              style={styles.coverImage}
-              resizeMode={'contain'}
-              source={require('../assets/icon.png')}
-              defaultSource={require('../assets/icon.png')}
-            />
-            <Button title="Upload a Cover Photo" />
+            <TouchableOpacity onPress={async () => {
+              const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+              if (permissionResult.status !== Permissions.PermissionStatus.GRANTED) {
+                Alert.alert('Insufficient Permissions', 'Cannot upload cover photo without gallery permissions.');
+              }
+                const imageResult = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: false });
+                if(imageResult.cancelled === false) {
+                  setCoverImageUri(imageResult.uri);
+                }
+            }}>
+              <Image
+                style={styles.coverImage}
+                resizeMode={'contain'}
+                source={coverImageUri.length > 0 ? { uri: coverImageUri } : require('../assets/icon.png')}
+                defaultSource={require('../assets/icon.png')}
+              />
+            </TouchableOpacity>
+            <Text style={material.caption}>Upload a Cover Photo</Text>
           </View>
           <View>
             <View style={{ alignItems: 'flex-start', flexDirection: 'column' }}>
@@ -84,18 +97,18 @@ export const UploadSong = ({ navigation }: UploadSongProps) => {
             <View>
               <Text style={material.title}>Description</Text>
               <Input
-              value={values.description}
-              onChangeText={handleChange('description')}
-              onBlur={handleBlur('description')}
-              placeholder={'Describe your composition...'}
-              multiline
-              numberOfLines={6}
+                value={values.description}
+                onChangeText={handleChange('description')}
+                onBlur={handleBlur('description')}
+                placeholder={'Describe your composition...'}
+                multiline
+                numberOfLines={6}
               />
             </View>
           </View>
         </View>
       )}</Formik>
-    </View>
+    </ScrollView>
   );
 };
 

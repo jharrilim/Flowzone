@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { AppContext, appContextDefaultValue } from './App.context';
@@ -15,6 +15,7 @@ import Profile from './screens/Profile';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 import UploadSong from './screens/UploadSong';
+import { Button } from 'react-native-elements';
 
 const AppNavigator = createStackNavigator({
   Start: {
@@ -76,10 +77,12 @@ const AppNavigator = createStackNavigator({
   },
   UploadSong: {
     screen: UploadSong,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Upload a Song',
-      
-    })
+    navigationOptions: ({ navigation, screenProps }) => {
+
+      return {
+        title: 'Upload a Song',
+      };
+    }
   },
 },
   {
@@ -92,20 +95,21 @@ const AppNavigator = createStackNavigator({
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-    }
+    },
   }
 );
 
 const AppNavigatorContainer = createAppContainer(AppNavigator);
 
-export default () => (
-  <ServiceContainer.Provider value={serviceContainerContextDefaultValue}>
-    <AppContext.Provider value={appContextDefaultValue}>
-      {/* <StatusBar backgroundColor="#FFF" barStyle="light-content" /> */}
-      <AppNavigatorContainer />
-      <AppContext.Consumer>
-        {({ showFooter }) => showFooter && <AppFooter /> }
-      </AppContext.Consumer>
-    </AppContext.Provider>
-  </ServiceContainer.Provider>
-);
+export default () => {
+  const [showFooter, setShowFooter] = useState(true);
+  return (
+    <ServiceContainer.Provider value={serviceContainerContextDefaultValue}>
+      <AppContext.Provider value={appContextDefaultValue}>
+        {/* <StatusBar backgroundColor="#FFF" barStyle="light-content" /> */}
+        <AppNavigatorContainer screenProps={{ setShowFooter }} />
+        {showFooter && <AppFooter />}
+      </AppContext.Provider>
+    </ServiceContainer.Provider>
+  );
+};

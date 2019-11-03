@@ -7,6 +7,7 @@ import { material } from 'react-native-typography';
 import { Input, Text } from 'react-native-elements';
 import { AsyncStorage } from 'react-native';
 import { NavigationStackProp } from 'react-navigation-stack';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface RegisterProps {
   navigation: NavigationStackProp<any, any>
@@ -15,7 +16,7 @@ interface RegisterProps {
 export const Register = ({ navigation }: RegisterProps) => {
   const { appService } = useContext(ServiceContainer);
   return (
-    <>
+    <ScrollView>
       <Formik
         initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
         onSubmit={async ({ username, email, password }) => {
@@ -93,7 +94,7 @@ export const Register = ({ navigation }: RegisterProps) => {
           </View>
         )}
       </Formik>
-    </>
+    </ScrollView>
   )
 };
 

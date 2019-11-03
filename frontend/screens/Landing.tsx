@@ -30,10 +30,17 @@ export const Landing = ({ navigation }: AppProps) => {
   return (
     <View style={styles.container}>
       <Animated.View style={{ opacity: fadeAnim }}>
-        <View style={{ flex: 1, justifyContent: 'space-between' }}>
-          <View style={{ alignContent: 'space-between' }}>
-            <Text style={material.display3}>Flowzone</Text>
-            <Text style={material.display2}>Music sounds better, with you.</Text>
+        <View style={{ alignContent: 'space-between' }}>
+          <View style={{ flex: 1, justifyContent: 'space-between' }}>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={material.display3}>Flowzone</Text>
+            </View>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{...material.display2 as Object, textAlign: 'center'}}>
+                Music sounds better, with you
+              </Text>
+            </View>
+            <View />
           </View>
           <View style={{ flexDirection: 'column' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -46,14 +53,14 @@ export const Landing = ({ navigation }: AppProps) => {
                 <Button title="Login" onPress={e => { navigation.navigate('Login') }} />
               </View>
               <View style={{ flex: 1 }}>
-                <Button title="Enter" onPress={e => { navigation.navigate('Flowzone', { title: 'Flowzone'}) }} />
+                <Button title="Enter" onPress={e => { navigation.navigate('Flowzone', { title: 'Flowzone' }) }} />
               </View>
               <View style={{ flex: 1 }}>
                 <Button title="Get Started" onPress={e => { navigation.navigate('Register') }} />
               </View>
             </View>
           </View>
-          </View>
+        </View>
       </Animated.View>
     </View>
   );

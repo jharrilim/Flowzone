@@ -8,6 +8,7 @@ export const appContextDefaultValue = {
         song: './assets/TheCoolProject.MP3'
     },
     showFooter: true,
+    
 }
 
 export const AppContext = createContext(appContextDefaultValue);
