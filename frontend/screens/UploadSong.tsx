@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignContent: 'flex-start',
     justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   cover: {
     alignItems: 'center',
@@ -31,8 +33,6 @@ const styles = StyleSheet.create({
     width: win.width * 0.8,
     height: win.height * 0.3,
   },
-  uploadCoverPhotoButton: {
-  }
 });
 
 interface UploadSongProps {

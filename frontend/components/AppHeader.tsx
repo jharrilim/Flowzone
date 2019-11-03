@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import { Avatar, Text, Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { NavigationStackProp, HeaderProps } from 'react-navigation-stack';
 
 const styles = StyleSheet.create({
   root: {
@@ -16,11 +16,10 @@ const styles = StyleSheet.create({
 
 const AnimatedAvatar = Animated.createAnimatedComponent(Avatar);
 
-interface AppHeaderProps {
-  navigation: NavigationStackProp,
+interface AppHeaderProps extends HeaderProps {
 }
 
-export const AppHeader = ({ navigation }: AppHeaderProps) => {
+export const AppHeader = ({ navigation, scene }: AppHeaderProps) => {
 
   return (
     <View style={styles.root}>
@@ -31,7 +30,7 @@ export const AppHeader = ({ navigation }: AppHeaderProps) => {
         />
       </TouchableOpacity>
       <View style={{ alignItems: 'center' }}>
-        <Text>{navigation.state.routeName}</Text>
+        <Text>{scene.descriptor.options.title}</Text>
       </View>
       <TouchableOpacity
         onPress={() => {

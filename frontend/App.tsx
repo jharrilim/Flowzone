@@ -78,7 +78,6 @@ const AppNavigator = createStackNavigator({
   UploadSong: {
     screen: UploadSong,
     navigationOptions: ({ navigation, screenProps }) => {
-
       return {
         title: 'Upload a Song',
       };
@@ -90,7 +89,7 @@ const AppNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: '#77E',
       },
-      header: ({ navigation }) => <AppHeader navigation={navigation} />,
+      header: props => <AppHeader {...props} />,
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
