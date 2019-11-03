@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingRight: 10
+    paddingRight: 10,
+    backgroundColor: 'hsl(200, 10%, 80%)',
   },
   icon: {
 

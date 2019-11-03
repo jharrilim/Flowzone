@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   coverImage: {
-    // width: win.width * 0.8,
-    // height: win.height,
+    width: win.width * 0.8,
+    height: win.height * 0.3,
   },
   uploadCoverPhotoButton: {
   }
@@ -43,9 +43,6 @@ export const UploadSong = ({ navigation }: UploadSongProps) => {
   const [coverImageUri, setCoverImageUri] = useState('');
   return (
     <ScrollView style={styles.root}>
-      <View style={{ alignItems: 'center' }}>
-        <Text style={material.headline}>Upload Your Composition</Text>
-      </View>
       <Formik
         initialValues={{
           title: '',
@@ -64,16 +61,19 @@ export const UploadSong = ({ navigation }: UploadSongProps) => {
         })}
       >{({ values, handleChange, handleBlur }) => (
         <View style={styles.form}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={material.headline}>Upload Your Composition</Text>
+          </View>
           <View style={styles.cover}>
             <TouchableOpacity onPress={async () => {
               const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL);
               if (permissionResult.status !== Permissions.PermissionStatus.GRANTED) {
                 Alert.alert('Insufficient Permissions', 'Cannot upload cover photo without gallery permissions.');
               }
-                const imageResult = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: false });
-                if(imageResult.cancelled === false) {
-                  setCoverImageUri(imageResult.uri);
-                }
+              const imageResult = await ImagePicker.launchImageLibraryAsync({ allowsMultipleSelection: false });
+              if (imageResult.cancelled === false) {
+                setCoverImageUri(imageResult.uri);
+              }
             }}>
               <Image
                 style={styles.coverImage}
