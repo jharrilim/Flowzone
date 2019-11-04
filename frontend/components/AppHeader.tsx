@@ -3,6 +3,7 @@ import { View, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import { Avatar, Text, Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationStackProp, HeaderProps } from 'react-navigation-stack';
+import { material } from 'react-native-typography';
 
 const styles = StyleSheet.create({
   root: {
@@ -30,7 +31,7 @@ export const AppHeader = ({ navigation, scene }: AppHeaderProps) => {
         />
       </TouchableOpacity>
       <View style={{ alignItems: 'center' }}>
-        <Text>{scene.descriptor.options.title}</Text>
+        <Text style={material.title}>{scene.descriptor.options.title}</Text>
       </View>
       <TouchableOpacity
         onPress={() => {
