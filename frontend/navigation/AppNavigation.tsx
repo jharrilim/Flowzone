@@ -75,7 +75,7 @@ const AppNavigatorContainer = createAppContainer(AppNavigator);
 
 export const AppNavigation = () => (
   <>
-    <AppNavigatorContainer style={{ top: 0, left: 0,  }} />
+    <AppNavigatorContainer />
     <AppFooter />
   </>
 );
