@@ -46,7 +46,7 @@ const AppNavigator = createStackNavigator({
     screen: Profile,
     navigationOptions: ({ navigation }) => ({
       title: 'Your Profile',
-    }),
+    })
   },
   UploadSong: {
     screen: UploadSong,

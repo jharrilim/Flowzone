@@ -49,8 +49,6 @@ export const Flowzone = ({ navigation }: FlowzoneProps) => {
               autoplayDelay={500}
               autoplayInterval={10000}
             />
-            <Image source={require('../assets/icon.png')} defaultSource={require('../assets/icon.png')} />
-            <Text>Song Title</Text>
           </View>
         </View>
         <View>

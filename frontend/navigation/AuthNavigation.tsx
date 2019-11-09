@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Register from '../screens/auth/Register';
 import Login from '../screens/auth/Login';
 import Landing from '../screens/auth/Landing';
-
-import AppNavigation from './AppNavigation';
 import AppDrawerNavigation from './AppDrawerNavigation';
+import { ServiceContainer } from '../services/service-container.context';
 
-const AuthNavigator = createSwitchNavigator({
+const AuthStackNavigation = createAppContainer(createStackNavigator({
   Start: {
     screen: Landing,
-    navigationOptions: ({ }) => ({
-      title: 'Flowzone',
-    }),
-  },
-  App: {
-    screen: AppDrawerNavigation,
     navigationOptions: ({ }) => ({
       title: 'Flowzone',
     }),
@@ -39,10 +32,36 @@ const AuthNavigator = createSwitchNavigator({
       header: null,
     },
   }
+));
+
+
+const AuthNavigator = createSwitchNavigator({
+  Start: {
+    screen: () => <AuthStackNavigation />,
+    navigationOptions: ({ }) => ({
+      title: 'Flowzone'
+    })
+  },
+  App: {
+    screen: AppDrawerNavigation,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Flowzone',
+    }),
+  },
+},
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  }
 );
 
 export const AuthNavigationContainer = createAppContainer(AuthNavigator);
 
-export const AuthNavigation = () => <AuthNavigationContainer />
-
+export const AuthNavigation = () => {
+  const { navigationService } = useContext(ServiceContainer);
+  return (
+    <AuthNavigationContainer ref={ref => navigationService.setNavigator(ref)} />
+  );
+};
 export default AuthNavigation;

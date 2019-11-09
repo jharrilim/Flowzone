@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import { Text, Image } from 'react-native-elements';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
+import { ServiceContainer } from '../services/service-container.context';
 
 const win = Dimensions.get('window');
 
@@ -24,7 +26,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export const Profile = () => {
+export interface ProfileProps extends NavigationStackScreenProps { }
+
+export const Profile = ({ navigation }: ProfileProps) => {
+  const { userService } = useContext(ServiceContainer);
+  useEffect(() => {
+    userService
+      .getCurrentUser()
+      .then(user => navigation.setParams({ screenTitle: user.username }))
+      .catch(e => console.error('User should not be able to access Profile without being logged in', e));
+  }, []);
   return (
     <View style={styles.root}>
       <Image

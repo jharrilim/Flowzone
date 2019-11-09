@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { NavigationScreenProp } from 'react-navigation';
+import React, { useState, useEffect, useContext } from 'react';
+import { NavigationScreenProp, NavigationActions, StackActions } from 'react-navigation';
 import { StyleSheet, Text, View, Animated } from 'react-native';
 
 import { material } from 'react-native-typography';
 import { Button } from 'react-native-elements';
+import { ServiceContainer } from '../../services/service-container.context';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +22,7 @@ interface AppProps {
 }
 
 export const Landing = ({ navigation }: AppProps) => {
+  const { navigationService } = useContext(ServiceContainer);
   const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const Landing = ({ navigation }: AppProps) => {
               <Text style={material.display3}>Flowzone</Text>
             </View>
             <View style={{ alignItems: 'center' }}>
-              <Text style={{...material.display2 as Object, textAlign: 'center'}}>
+              <Text style={{ ...material.display2 as Object, textAlign: 'center' }}>
                 Music sounds better, with you
               </Text>
             </View>
@@ -53,7 +55,11 @@ export const Landing = ({ navigation }: AppProps) => {
                 <Button title="Login" onPress={e => { navigation.navigate('Login') }} />
               </View>
               <View style={{ flex: 1 }}>
-                <Button title="Enter" onPress={e => { navigation.navigate('App', { title: 'Flowzone' }) }} />
+                <Button title="Enter"
+                  onPress={e => {
+                    navigationService.dispatch(NavigationActions.navigate({ routeName: 'App' }));
+                  }}
+                />
               </View>
               <View style={{ flex: 1 }}>
                 <Button title="Get Started" onPress={e => { navigation.navigate('Register') }} />
