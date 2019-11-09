@@ -1,20 +1,38 @@
 import { NavigationContainerComponent, NavigationNavigateAction } from 'react-navigation';
+import { DrawerActions } from 'react-navigation-drawer';
 
 export class NavigationService {
-    private _navigator: NavigationContainerComponent;
-    private _isSet = false;
+    private _authNavigator: NavigationContainerComponent;
+    private _drawerNavigator: NavigationContainerComponent;
 
     constructor() {
     }
 
-    setNavigator(navigator: NavigationContainerComponent) {
-        if(this._isSet)
-            return;
-        this._navigator = navigator;
-        this._isSet = true;
+    setAuthNavigator(navigator: NavigationContainerComponent) {
+        this._authNavigator = navigator;
     }
 
-    dispatch(actionPayload: NavigationNavigateAction) {
-        return this._navigator.dispatch(actionPayload);
+    setDrawerNavigator(navigator: NavigationContainerComponent) {
+        this._drawerNavigator = navigator;
+    }
+
+    dispatchAuthNavigator(actionPayload: NavigationNavigateAction) {
+        return this._authNavigator.dispatch(actionPayload);
+    }
+
+    dispatchDrawerNavigator(actionPayload: NavigationNavigateAction) {
+        return this._drawerNavigator.dispatch(actionPayload);
+    }
+
+    openDrawer() {
+        return this._drawerNavigator.dispatch({ type: DrawerActions.OPEN_DRAWER } );
+    }
+
+    closeDrawer() {
+        return this._drawerNavigator.dispatch({ type: DrawerActions.CLOSE_DRAWER });
+    }
+
+    toggleDrawer() {
+        return this._drawerNavigator.dispatch({ type: DrawerActions.TOGGLE_DRAWER });
     }
 }

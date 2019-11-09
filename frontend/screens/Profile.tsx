@@ -34,7 +34,7 @@ export const Profile = ({ navigation }: ProfileProps) => {
     userService
       .getCurrentUser()
       .then(user => navigation.setParams({ screenTitle: user.username }))
-      .catch(e => console.error('User should not be able to access Profile without being logged in', e));
+      .catch(e => console.debug('User should not be able to access Profile without being logged in', e));
   }, []);
   return (
     <View style={styles.root}>

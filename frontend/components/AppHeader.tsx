@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import { Avatar, Text, Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationStackProp, HeaderProps } from 'react-navigation-stack';
 import { material } from 'react-native-typography';
+import { ServiceContainer } from '../services/service-container.context';
 
 const styles = StyleSheet.create({
   root: {
@@ -21,7 +22,7 @@ interface AppHeaderProps extends HeaderProps {
 }
 
 export const AppHeader = ({ navigation, scene }: AppHeaderProps) => {
-
+  const { navigationService } = useContext(ServiceContainer);
   return (
     <View style={styles.root}>
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -35,7 +36,7 @@ export const AppHeader = ({ navigation, scene }: AppHeaderProps) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.openDrawer();
+          navigationService.toggleDrawer();
         }}
       >
         <Icon name="menu" />

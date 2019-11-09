@@ -57,7 +57,7 @@ export const Landing = ({ navigation }: AppProps) => {
               <View style={{ flex: 1 }}>
                 <Button title="Enter"
                   onPress={e => {
-                    navigationService.dispatch(NavigationActions.navigate({ routeName: 'App' }));
+                    navigationService.dispatchAuthNavigator(NavigationActions.navigate({ routeName: 'App' }));
                   }}
                 />
               </View>

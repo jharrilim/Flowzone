@@ -43,7 +43,7 @@ const AuthNavigator = createSwitchNavigator({
     })
   },
   App: {
-    screen: AppDrawerNavigation,
+    screen: () => <AppDrawerNavigation />,
     navigationOptions: ({ navigation }) => ({
       title: 'Flowzone',
     }),
@@ -61,7 +61,7 @@ export const AuthNavigationContainer = createAppContainer(AuthNavigator);
 export const AuthNavigation = () => {
   const { navigationService } = useContext(ServiceContainer);
   return (
-    <AuthNavigationContainer ref={ref => navigationService.setNavigator(ref)} />
+    <AuthNavigationContainer ref={ref => navigationService.setAuthNavigator(ref)} />
   );
 };
 export default AuthNavigation;
