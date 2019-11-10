@@ -30,8 +30,9 @@ export const MusicSlider = ({ artist, title, length, currentTime, onSlidingCompl
   return (
     <View style={styles.root}>
       <Slider
-        thumbTintColor={'#77E'}
-        maximumTrackTintColor="#5CA"
+        thumbTintColor={'#44C'}
+        maximumTrackTintColor={"#77E"}
+        minimumTrackTintColor={'#44C'}
         value={currentTime || 0}
         minimumValue={0}
         maximumValue={length}

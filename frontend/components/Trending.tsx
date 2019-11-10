@@ -4,7 +4,7 @@ import { Text, Tile } from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
 import { material } from 'react-native-typography';
 import { mockData } from '../mock/mock-data';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export interface TrendingProps {
   onItemClick: (e: {
@@ -25,7 +25,7 @@ export const Trending = ({ onItemClick }: TrendingProps) => (
       renderItem={({ item: { title, artist }, index }) => {
         return (
           <View>
-            <TouchableOpacity onPress={() => {
+            <TouchableOpacity activeOpacity={1} onPress={() => {
               onItemClick({ title, artist, index });
             }}>
               <Tile

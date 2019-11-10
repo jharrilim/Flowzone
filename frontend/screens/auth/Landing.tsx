@@ -38,18 +38,13 @@ export const Landing = ({ navigation }: AppProps) => {
               <Text style={material.display3}>Flowzone</Text>
             </View>
             <View style={{ alignItems: 'center' }}>
-              <Text style={{ ...material.display2 as Object, textAlign: 'center' }}>
+              <Text style={[material.display2, { textAlign: 'center' }]}>
                 Music sounds better, with you
               </Text>
             </View>
             <View />
           </View>
           <View style={{ flexDirection: 'column' }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <View style={{ flex: 1 }}>
-                <Button title="Upload" onPress={e => { navigation.navigate('UploadSong') }} />
-              </View>
-            </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
               <View style={{ flex: 1 }}>
                 <Button title="Login" onPress={e => { navigation.navigate('Login') }} />

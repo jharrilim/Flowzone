@@ -4,12 +4,12 @@ import { createAppContainer } from 'react-navigation';
 import { ServiceContainer } from '../services/service-container.context';
 import { Icon } from 'react-native-elements';
 import AppDrawer from '../components/AppDrawer';
-import Profile from '../screens/Profile';
 import UploadSong from '../screens/UploadSong';
 import { DiscoverNavigation } from './DiscoverNavigation';
 import { HomeNavigation } from './HomeNavigation';
 import { FlowzoneNavigation } from './FlowzoneNavigation';
 import AppFooter from '../components/AppFooter';
+import { ProfileNavigation } from './ProfileNavigation';
 
 const AppDrawerNavigation = createDrawerNavigator({
   Start: {
@@ -34,7 +34,7 @@ const AppDrawerNavigation = createDrawerNavigator({
     }),
   },
   Profile: {
-    screen: Profile,
+    screen: ProfileNavigation,
     navigationOptions: ({ }) => ({
       title: 'Your Profile',
       drawerIcon: () => <Icon name={'person'} />,
