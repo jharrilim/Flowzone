@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { material } from 'react-native-typography';
 import { NavigationStackProp } from 'react-navigation-stack';
 import Carousel from 'react-native-snap-carousel';
 import { Tile } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { mockData } from './mock/mock-data';
+import { mockData } from '../mock/mock-data';
 
 interface DiscoverProps {
   navigation: NavigationStackProp<any, any>

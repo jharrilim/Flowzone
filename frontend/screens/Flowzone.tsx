@@ -4,7 +4,7 @@ import { material } from 'react-native-typography';
 import { NavigationScreenProp } from 'react-navigation';
 import { Tile } from 'react-native-elements';
 import Carousel from 'react-native-snap-carousel';
-import { mockData } from './mock/mock-data';
+import { mockData } from '../mock/mock-data';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 interface FlowzoneProps {
